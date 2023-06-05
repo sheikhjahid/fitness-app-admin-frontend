@@ -1,14 +1,26 @@
 // next
-import Head from 'next/head';
-import { useState } from 'react';
-import { Container, Typography, Button, Grid, Box, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
-import ClientTable from '../../components/Admin/ClientTable';
+import Head from "next/head";
+import { useState } from "react";
+import {
+  Container,
+  Typography,
+  Button,
+  Grid,
+  Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material";
+import ClientTable from "../../components/Admin/ClientTable";
+
+import MultipartForm from "../../components/form/MultipartForm";
 // layouts
 
-import DashboardLayout from '../../layouts/dashboard';
+import DashboardLayout from "../../layouts/dashboard";
 // components
-import { useSettingsContext } from '../../components/settings';
-
+import { useSettingsContext } from "../../components/settings";
 
 // ----------------------------------------------------------------------
 
@@ -22,12 +34,11 @@ export default function PageOne() {
   const [fullWidth, setFullWidth] = useState(true);
   const addClient = () => {
     setOpen(true);
-  }
+  };
 
   const handleClose = () => {
     setOpen(false);
   };
-
 
   return (
     <>
@@ -35,7 +46,7 @@ export default function PageOne() {
         <title>Admin Dashboard - Fitness</title>
       </Head>
 
-      <Container maxWidth={themeStretch ? false : 'xl'}>
+      <Container maxWidth={themeStretch ? false : "xl"}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={8}>
             <Typography variant="h3" component="h1" paragraph>
@@ -43,7 +54,9 @@ export default function PageOne() {
             </Typography>
           </Grid>
           <Grid item xs={4}>
-            <Button variant="contained" onClick={addClient} >Add client</Button>
+            <Button variant="contained" onClick={addClient}>
+              Add client
+            </Button>
           </Grid>
         </Grid>
         <ClientTable />
@@ -51,23 +64,17 @@ export default function PageOne() {
 
       <Dialog
         fullWidth={fullWidth}
-        maxWidth='lg'
+        maxWidth="lg"
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Optional sizes</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            You can set my maximum width and whether to adapt or not.
-          </DialogContentText>
-
+          <MultipartForm />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
-
-
     </>
   );
 }
